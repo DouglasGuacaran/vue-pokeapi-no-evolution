@@ -9,10 +9,10 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <router-link class="nav-link"  to="/pokeapi">Pokeapi</router-link>
+                    <router-link class="nav-link"  to="/lista_pokemones">Pokeapi</router-link>
                     </li>
                     <li class="nav-item">
-                    <router-link class="nav-link" to="/contacto">Contacto</router-link>
+                    <router-link class="nav-link" to="/pokemon_menor">Contacto</router-link>
                     </li>
                 </ul>
                 <span class="navbar-text">

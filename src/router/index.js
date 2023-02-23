@@ -11,14 +11,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/pokeapi',
+    path: '/lista_pokemones',
     name: 'Pokeapi',
     component: () => import('../views/Pokeapi.vue')
   },
   {
-    path: '/contacto',
-    name: 'Contacto',
-    component: () => import('../views/Contacto.vue')
+    path: '/pokemon_menor',
+    name: 'PokemonMenorPeso',
+    component: () => import('../views/PokemonMenorPeso.vue')
   }
 ]
 
