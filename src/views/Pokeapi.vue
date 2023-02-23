@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid lista-ordenada">
     <div class="container">
       <div class="row">
         <h1>Pokemons existentes sin evolución</h1>
@@ -35,3 +35,10 @@ export default {
   
 }
 </script>
+
+<style>
+.lista-ordenada {
+  max-height: 820px; /* Establece la altura máxima para el contenedor de la lista */
+  overflow-y: scroll; /* Hace que aparezca una barra de desplazamiento vertical */
+}
+</style>
