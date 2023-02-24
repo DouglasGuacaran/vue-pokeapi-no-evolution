@@ -1,12 +1,14 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <h1>Home</h1>
+      <h1>Descripción de las Tareas a Visualizar</h1>
       <p>
         Utilizando las herramientas, lenguajes y/o librerías que consideres
         prudente, construye una función que, utilizando la API
         <a href="https://pokeapi.co/docs/v2">pokeapi.co</a> (v2):
       </p>
+      <h2>Tarea 1</h2>
+      <p>(Ver pestaña Lista de Pokemones)</p>
       <ul>
         <li>
           Obtenga el nombre (<code>name</code>) de todos los Pokemon existentes
@@ -31,6 +33,8 @@
             </ul>
           </li>
         </ul>
+        <h2>Tarea 2</h2>
+        <p>(Ver pestaña Pokemon Menor Peso)</p>
         <li>
           Obtenga el nombre del Pokemon sin evolución con el menor peso (weight)
         </li>
@@ -46,18 +50,6 @@
             </ul>
           </li>
         </ul>
-      </ul>
-      <p>Forma de entrega:</p>
-      <ul>
-        <li>
-          Compartir un repositorio github con la respuesta al email andy@uc.cl
-          (github user: andycsoto)
-        </li>
-        <li>Despliega la solución en internet de la forma que prefieras</li>
-        <li>
-          Recuerda documentar todo lo necesario para ejecutar tu código en un
-          ambiente local
-        </li>
       </ul>
     </div>
   </div>

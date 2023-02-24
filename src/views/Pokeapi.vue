@@ -4,25 +4,23 @@
       <div class="row">
         <h1>Pokemons existentes sin evolución</h1>
         <div class="col-4">
-            <ol>
-              <li v-for="pokemon in orderedPokemons" :key="pokemon.name">
-                {{ pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) }}
-              </li>
-            </ol>
+          <ol>
+            <li v-for="pokemon in orderedPokemons" :key="pokemon.name">
+              {{ pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) }}
+            </li>
+          </ol>
         </div>
       </div>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name:'pokeApiView',
-  data () {
-    return {
-    }
-    
+  name: "pokeApiView",
+  data() {
+    return {};
   },
   computed: {
     orderedPokemons() {
@@ -30,10 +28,9 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('fetchPokemons');
+    this.$store.dispatch("fetchPokemons");
   },
-  
-}
+};
 </script>
 
 <style>

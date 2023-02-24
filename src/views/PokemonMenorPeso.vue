@@ -9,7 +9,10 @@
             buscar
           </p>
           <button class="btn btn-primary" @click="getPokemon">Buscar</button>
-          <p class="fs-4" v-if="pokemonName">El nombre del Pokemon es: {{ pokemonName.charAt(0).toUpperCase()+pokemonName.slice(1) }}</p>
+          <p class="fs-4" v-if="pokemonName">
+            El nombre del Pokemon es:
+            {{ pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1) }}
+          </p>
           <p class="fs-4" v-else>Cargando...</p>
         </div>
       </div>
@@ -30,6 +33,4 @@ export default {
   },
 };
 </script>
-<style>
-
-</style>
+<style></style>
