@@ -20,7 +20,12 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <router-link class="nav-link text-white" to="/lista_pokemones"
-                >Lista de Pokemones</router-link
+                >Lista de todos los Pokemones</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link text-white" to="/no_evolutions"
+                >Lista de los Pokemones sin Evolucionar</router-link
               >
             </li>
             <li class="nav-item">

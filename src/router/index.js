@@ -16,6 +16,11 @@ const routes = [
     component: () => import('../views/Pokeapi.vue')
   },
   {
+    path: '/no_evolutions',
+    name: 'NoEvolutions',
+    component: () => import('../views/NoEvolutions.vue')
+  },
+  {
     path: '/pokemon_menor',
     name: 'PokemonMenorPeso',
     component: () => import('../views/PokemonMenorPeso.vue')
