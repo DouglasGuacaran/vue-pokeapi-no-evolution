@@ -5,30 +5,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    pokemons: [],
     pokemonName: null
   },
   mutations: {
-    setPokemons(state, pokemons) {
-      state.pokemons = pokemons;
-    },
     setPokemonName(state, pokemonName) {
       state.pokemonName = pokemonName;
-    }
+    },
   },
   actions: {
-    async fetchPokemons({
-      commit
-    }) {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=1000');
-      const data = await response.json();
-      const pokemons = data.results.filter((pokemon) => !pokemon.hasOwnProperty('evolves_to'));
-      commit('setPokemons', pokemons);
-    },
+  
     async getPokemon({
       commit
     }) {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000`);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100`);
       const data = await response.json();
       const pokemonList = data.results.filter(pokemon => !pokemon.hasOwnProperty('evolves_to'));
       const promises = pokemonList.map(async pokemon => {
@@ -48,11 +37,11 @@ export default new Vuex.Store({
         }
       }, null);
       commit('setPokemonName', pokemonWithLowestWeight.name);
-    }
+    },
   },
   getters: {
     orderedPokemons(state) {
       return state.pokemons.sort((a, b) => a.weight - b.weight);
-    },
-  },
+    }
+  }
 });
