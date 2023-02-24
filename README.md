@@ -21,3 +21,6 @@ Esto ejecutará la aplicación en un servidor local en tu navegador.
 Notas
 Este proyecto se realizó como parte de un desafío técnico. Si tienes alguna pregunta o sugerencia, no dudes en contactarme.
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+el enlace de la pagina en gh-pages es el siguiente:
+https://douglasguacaran.github.io/vue-pokeapi-no-evolution/
