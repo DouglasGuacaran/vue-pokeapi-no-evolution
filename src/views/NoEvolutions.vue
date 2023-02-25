@@ -13,6 +13,8 @@
       </div>
     </div>
 </template>
+
+
 <script>
 export default {
   data() {
@@ -20,53 +22,65 @@ export default {
       pokemonList: [],
     }
   },
-  async mounted() {
-    const pokemonIds = await this.getPokemonIds();
-    const pokemonList = await this.getNoEvolutionPokemon(pokemonIds);
-    this.pokemonList = pokemonList;
+  mounted() {
+    this.getPokemonIds()
+      .then(pokemonIds => this.getNoEvolutionPokemon(pokemonIds))
+      .then(pokemonList => this.pokemonList = pokemonList);
   },
   methods: {
-    async getPokemonIds() {
+    getPokemonIds() {
       const allPokemonIds = [];
       const offSet=Number;
-      async function fetchPokemon(offset) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
-        const data = await response.json();
-        data.results.forEach(pokemon => {
-          // Agregamos el ID del pokemon al array
-          const pokemonId = pokemon.url.split('/')[6];
-          allPokemonIds.push(pokemonId);
-        });
+      const fetchPokemon = (offset) => {
+        return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
+          .then(response => response.json())
+          .then(data => {
+            data.results.forEach(pokemon => {
+              // Agregamos el ID del pokemon al array
+              const pokemonId = pokemon.url.split('/')[6];
+              allPokemonIds.push(pokemonId);
+            });
 
-        // Si hay más resultados, hacemos otra llamada a la API con un nuevo offset
-        if (data.next) {
-          const nextOffset = offset + 20;
-          return fetchPokemon(nextOffset);
-        } else {
-          // Si no hay más resultados, devolvemos el array completo de IDs de los pokemones
-          return allPokemonIds;
-        }
+            // Si hay más resultados, hacemos otra llamada a la API con un nuevo offset
+            if (data.next) {
+              const nextOffset = offset + 20;
+              return fetchPokemon(nextOffset);
+            } else {
+              // Si no hay más resultados, devolvemos el array completo de IDs de los pokemones
+              return allPokemonIds;
+            }
+          });
       }
 
       return fetchPokemon(0);
     },
-    async getNoEvolutionPokemon(pokemonIds) {
-      const noEvoPokemonList = [];
-      for (const pokemonId of pokemonIds) {
-        try {
-          const response = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
-          const data = await response.json();
-          // Si el pokemon no tiene evolución, lo agregamos a la lista de pokemones sin evolución
-          if (!data.chain.evolves_to.length) {
-            const pokemon = { id: pokemonId, name: data.chain.species.name };
-            noEvoPokemonList.push(pokemon);
-          }
-        } catch (error) {}
-      }
+    getNoEvolutionPokemon(pokemonIds) {
+      const promises = [];
 
-      // Filtramos los pokemones sin evolución y los ordenamos alfabéticamente por nombre
-      noEvoPokemonList.sort((a, b) => a.name.localeCompare(b.name));
-      return noEvoPokemonList;
+      // Para cada ID de pokemon, hacemos una llamada a la API de evolución
+      pokemonIds.forEach(pokemonId => {
+        const promise = fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`)
+          .then(response => response.json())
+          .then(data => {
+            // Si el pokemon no tiene evolución, lo agregamos a la lista de pokemones sin evolución
+            if (!data.chain.evolves_to.length) {
+              return { id: pokemonId, name: data.chain.species.name };
+            }
+          })
+          .catch(error => {});
+          
+        promises.push(promise);
+      });
+
+      // Esperamos a que todas las promesas se resuelvan
+      return Promise.all(promises)
+        .then(results => {
+          // Filtramos los pokemones sin evolución y los ordenamos alfabéticamente por nombre
+          const noEvoPokemonList = results.filter(pokemon => pokemon != null);
+          noEvoPokemonList.sort((a, b) => a.name.localeCompare(b.name));
+          return noEvoPokemonList;
+        })
+        .catch(error => console.log(error));
     },
   },
 }
