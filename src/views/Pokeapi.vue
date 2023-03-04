@@ -5,9 +5,9 @@
         <div class="row">
           <h2>Pokemons</h2>
           <ol>
-            <li v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.name }}</li>
+            <li v-for="pokemon in listPokemons" :key="pokemon.name">{{ pokemon.name }}</li>
           </ol>
-          <p v-if="pokemons.length === 0">Cargando ...</p>
+          <p v-if="listPokemons.length === 0">Cargando ...</p>
         </div>
       </div>
     </div>
@@ -15,13 +15,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState,mapActions } from 'vuex'
 export default {
   name:'viewEvolutions',
   computed: {
-    ...mapState({
-      pokemons: state => state.pokemons
-  })
+    ...mapState(["listPokemons"])
+  },
+  methods: {
+    ...mapActions(["fetchPokemons"]),
   },
   mounted() {
     this.$store.dispatch('fetchPokemons')

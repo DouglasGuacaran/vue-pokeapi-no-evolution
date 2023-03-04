@@ -8,7 +8,7 @@
         <a href="https://pokeapi.co/docs/v2">pokeapi.co</a> (v2):
       </p>
       <h2>Tarea 1</h2>
-      <p>(Ver pestaña Lista de Pokemones)</p>
+      <p>(Ver pestaña Lista de Pokemones sin Evolucionar)</p>
       <ul>
         <li>
           Obtenga el nombre (<code>name</code>) de todos los Pokemon existentes
